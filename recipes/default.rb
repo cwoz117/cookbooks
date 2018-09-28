@@ -1,5 +1,12 @@
-#
-# Cookbook:: cookbooks
-# Recipe:: default
-#
-# Copyright:: 2018, The Authors, All Rights Reserved.
+package 'bind'
+package 'bind-utils'
+
+service 'named' do
+  action [:start, :enable]
+end
+
+file '/etc/named.conf' do
+  mode 0755
+  user 'named'
+  group 'named'
+end
